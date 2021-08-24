@@ -2,6 +2,7 @@
 #include <Keypad.h>
 
 U8GLIB_SSD1306_128X64 u8g; // Create an instant of OLED display
+char szMesg;               // Create variable to print when a key is pressed
 
 // Global variable declarations
 const uint8_t ROWS = 4;
@@ -35,6 +36,7 @@ void loop()
     if (key != NO_KEY)
     {
         Serial.println(key);
+        szMesg = key;
     }
     // *** END TEST CODE FOR KEYPAD *** //
 
@@ -56,12 +58,9 @@ void loop()
         u8g.drawBox(10, 15, 20, 10);   // draw box at (10,15) with with = 20, height = 10
         u8g.drawCircle(110, 50, 10);   // draw circle with centre at (110,50) and radius = 20
 
-        // If key is entered, print key pressed in display
-        if (key != NO_KEY)
-        {
-            u8g.setPrintPos(50, 25); // set the print position on display
-            u8g.print(key);          // Use print instead of drawstr for data types other than strings - Why does this only appears for a short time?
-        }
+        //Print the last key pressed
+        u8g.setPrintPos(50, 25); // set the print position on display
+        u8g.print(szMesg);       // Use print instead of drawstr for data types other than strings - Why does this only appears for a short time?
 
         u8g.setColorIndex(0);  // change the colour to black
         u8g.drawPixel(15, 18); // draw a pixel at (15,18) with the colour black
