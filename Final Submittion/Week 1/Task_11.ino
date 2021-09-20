@@ -33,6 +33,7 @@ void setup()
     }
 }
 
+// Loop must be defined
 void loop()
 {
 }
