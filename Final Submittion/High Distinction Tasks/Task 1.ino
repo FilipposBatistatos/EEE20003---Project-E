@@ -1,5 +1,9 @@
 // Link to the simulation https://wokwi.com/arduino/projects/309683284460175938
 
+// To toggle between temperature, double click the button
+// To change to analog/digital press the button once
+// To set up an alarm, press and hold the button, upon release the alarm will come up
+
 #include <OneButton.h> //Allows for different types of presses out of one button
 #include "U8glib.h"    //Controls the OLED display
 #include <RTClib.h>    //Reads the RTC clock
@@ -166,6 +170,8 @@ void setup()
     button.attachDoubleClick(toggleTemp);
     button.attachClick(toggleAnalog);
     button.attachLongPressStop(setAlarm);
+
+    Serial.println("Instuctions: \n Single press: Toggle between analog and digital \n Double press: Toggle temperature display \n Long press: Set up an alarm \n");
 }
 
 void loop()
