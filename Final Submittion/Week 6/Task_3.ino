@@ -3,9 +3,11 @@
     using timer interrupts (Do not use delay, millis, micros )
 */
 
+#define LED 7 // Connect LED to pin 7
+
 void setup()
 {
-    pinMode(7, OUTPUT);
+    pinMode(LED, OUTPUT);
 
     cli(); //stop all interupts
 
@@ -25,20 +27,13 @@ void setup()
     sei(); //allow interrupts
 }
 
-ISR(TIMER1_COMPA_vect)
+ISR(TIMER1_COMPA_vect) // Define interrupt event
 {
-    digitalWrite(7, HIGH);
+    digitalWrite(LED, HIGH);
     delay(50);
-    digitalWrite(7, LOW);
+    digitalWrite(LED, LOW);
 }
 
 void loop()
 {
-}
-
-void blink()
-{
-    digitalWrite(7, HIGH);
-    delay(50);
-    digitalWrite(7, LOW);
 }
